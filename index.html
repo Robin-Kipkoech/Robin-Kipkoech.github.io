@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Robin Kipkoech · Software Developer & AI Engineer</title>
+  <!-- Google Fonts + modern reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #AAC0B2;
+      color: #1a1f2c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* header / hero section (resembles Brooklyn template but with image support) */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e6edf4;
+    }
+
+    .hero-left {
+      flex: 2;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.15);
+      background: #eef2f8;
+      transition: transform 0.2s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* fallback if image missing */
+    .img-placeholder {
+      width: 140px;
+      height: 140px;
+      background: #e2e8f0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5f7f9a;
+      font-size: 3rem;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+    }
+
+    .hero-left h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e2b3c, #2c4c6e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #2c5a7a;
+      margin-bottom: 1rem;
+    }
+
+    .hero-desc {
+      max-width: 550px;
+      color: #2c3e4e;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: #4a627a;
+      background: #eef3fc;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      width: fit-content;
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #ffffff;
+      padding: 1rem 1.8rem;
+      border-radius: 48px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
+      border: 1px solid #eef2f8;
+    }
+
+    .stat {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1f4e6e;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #5c6f87;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .say-hello {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #1f4e6e;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: #0e3b56;
+      transform: translateY(-2px);
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #cbdde9;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #2c5a7a;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: #1f4e6e;
+      background: #f0f7fe;
+    }
+
+    /* LinkedIn & Fiverr button specific refinements */
+    .btn-linkedin {
+      border-color: #0a66c2;
+      color: #0a66c2;
+    }
+    .btn-linkedin:hover {
+      background: #0a66c210;
+      border-color: #0a66c2;
+    }
+    .btn-fiverr {
+      border-color: #1dbf73;
+      color: #1dbf73;
+    }
+    .btn-fiverr:hover {
+      background: #1dbf7310;
+      border-color: #1dbf73;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 1.8rem;
+      border-left: 5px solid #2c5a7a;
+      padding-left: 1rem;
+    }
+
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: #ffffff;
+      padding: 1.8rem;
+      border-radius: 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0,0,0,0.03);
+      border: 1px solid #eef2f8;
+    }
+    .about-text {
+      flex: 2;
+    }
+    .info-card {
+      flex: 1.2;
+      background: #f9fdfe;
+      border-radius: 24px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #e4edf5;
+    }
+    .info-item {
+      margin-bottom: 1rem;
+    }
+    .info-label {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #5f7f9a;
+      letter-spacing: 0.4px;
+    }
+    .skill-tag {
+      display: inline-block;
+      background: #eef2fa;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      margin: 0.2rem 0.2rem;
+    }
+
+    .two-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .col {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #eef2f8;
+    }
+    .col h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .skill-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+    .skill-list li {
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .skill-list li i {
+      color: #2c5a7a;
+      width: 1.2rem;
+      font-size: 0.8rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .project-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.5rem;
+      transition: 0.2s ease;
+      border: 1px solid #ecf3f9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.08);
+      border-color: #cde1ef;
+    }
+    .project-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0.8rem 0;
+    }
+    .tech {
+      font-size: 0.7rem;
+      background: #eef3fc;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-weight: 500;
+      color: #1f4e6e;
+    }
+    .features-list {
+      font-size: 0.85rem;
+      padding-left: 1.2rem;
+      margin: 0.8rem 0;
+      color: #2c4a62;
+    }
+    .features-list li {
+      margin: 0.3rem 0;
+    }
+
+    hr {
+      margin: 2rem 0;
+      border: none;
+      border-top: 1px solid #e2ebf3;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2ebf3;
+      font-size: 0.85rem;
+      color: #55748c;
+    }
+    .footer a {
+      color: #2c5a7a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 750px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .hero-left h1 {
+        font-size: 2.2rem;
+      }
+      .stats-row {
+        padding: 0.8rem 1rem;
+      }
+      .profile-img {
+        max-width: 200px;
+      }
+      .say-hello {
+        justify-content: center;
+      }
+    }
+
+    /* For tablets, maintain image size */
+    @media (min-width: 768px) {
+      .profile-img {
+        max-width: 320px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .profile-img {
+        max-width: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Hero section: text left, image right, with updated button group -->
+  <div class="hero">
+    <div class="hero-left">
+      <h1>Robin Kipkoech</h1>
+      <div class="hero-tagline">Software Developer | Aspiring AI Engineer</div>
+      <div class="hero-desc">
+        Building practical software solutions with Python, C#, and MySQL while continuously learning and exploring new technologies.
+      </div>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
+      </div>
+      <div class="say-hello">
+        <a href="mailto:kogorobin@gmail.com" class="btn-primary"><i class="far fa-envelope"></i> Say Hello!</a>
+        <a href="https://github.com/Robin-Kipkoech" target="_blank" class="btn-outline"><i class="fab fa-github"></i> GitHub</a>
+        <!-- LinkedIn Button -->
+        <a href="https://www.linkedin.com/in/robin-kipkoech-631997305/" target="_blank" class="btn-outline btn-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <!-- Fiverr Button -->
+        <a href="https://www.fiverr.com/robin_kipkoech" target="_blank" class="btn-outline btn-fiverr"><i class="fas fa-star"></i> Fiverr</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Professional profile image with robust fallback -->
+      <img class="profile-img" src="https://raw.githubusercontent.com/Robin-Kipkoech/Robin-Kipkoech.github.io/main/my_profile.jpg" alt="Robin Kipkoech" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'img-placeholder\'><i class=\'fas fa-user-circle\'></i></div>'">
+    </div>
+  </div>
+
+  <!-- Stats bar (graduation July 2026) -->
+  <div class="stats-row" style="margin-bottom: 2rem;">
+    <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Projects Shipped</div></div>
+    <div class="stat"><div class="stat-number">4</div><div class="stat-label">Core Systems</div></div>
+    <div class="stat"><div class="stat-number">🎓 July '26</div><div class="stat-label">KCA Graduate</div></div>
+  </div>
+
+  <!-- About Me + focus -->
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">About Me</h2>
+        <p>I am a Software Development graduate awaiting graduation from KCA University (expected <strong>July 2026</strong>), with a strong interest in backend development, artificial intelligence, and data-driven applications. My journey has been shaped by building practical projects that solve real-world problems. Through academic work, personal projects, and industrial attachment experience, I have developed a solid foundation in software development, database design, and business application development.</p>
+        <p style="margin-top: 1rem;">I enjoy learning new technologies, improving problem-solving abilities, and understanding how software creates meaningful solutions. As I begin my professional career, I am looking for opportunities to grow as a developer, contribute to impactful projects, and expand my knowledge in software engineering and AI.</p>
+        <div style="margin-top: 1.2rem;">
+          <span class="skill-tag"><i class="fas fa-brain"></i> Backend Dev</span>
+          <span class="skill-tag"><i class="fas fa-database"></i> Database Systems</span>
+          <span class="skill-tag"><i class="fas fa-robot"></i> AI Enthusiast</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-item"><span class="info-label">🎓 Education</span><br><strong>BSc Software Development</strong><br>KCA University · Graduation: <strong>July 2026</strong></div>
+        <div class="info-item"><span class="info-label">📍 Current Focus</span><br>Backend Engineering · AI/ML · Database Optimization</div>
+        <div class="info-item"><span class="info-label">💡 Professional exposure</span><br>ICT Attachment · Ministry of ICT & Digital Economy</div>
+        <div class="info-item"><span class="info-label">📬 Contact</span><br>kogorobin@gmail.com</div>
+        <div class="info-item"><span class="info-label">🌐 Freelance</span><br>Available on <a href="https://www.fiverr.com/robin_kipkoech" target="_blank" style="color:#1dbf73;">Fiverr</a> · LinkedIn</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Skills + Education side by side -->
+  <div class="two-columns">
+    <div class="col">
+      <h3><i class="fas fa-code"></i> Technical Skills</h3>
+      <ul class="skill-list">
+        <li><i class="fab fa-python"></i> Python (Flask, REST APIs, Auth)</li>
+        <li><i class="fas fa-database"></i> MySQL · SQLAlchemy · DB Design</li>
+        <li><i class="fas fa-file-excel"></i> Advanced Excel · Payroll Automation</li>
+        <li><i class="fab fa-git-alt"></i> Git & GitHub · VS Code · PyCharm</li>
+        <li><i class="fas fa-chart-line"></i> Data Analysis & Reporting (PDF/Excel)</li>
+        <li><i class="fas fa-cloud"></i> C# / C++ · System Architecture</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3><i class="fas fa-graduation-cap"></i> Education & Growth</h3>
+      <p><strong>KCA University</strong><br>Bachelor of Science in Software Development <br><span style="background: #eef2fa; padding: 0.1rem 0.5rem; border-radius: 20px; font-size: 0.8rem;">Graduation: July 2026</span></p>
+      <p><strong>Relevant studies:</strong> Software Engineering, Database Systems, AI, Data Structures, Web Development.</p>
+      <p><strong>Currently learning:</strong> Machine Learning fundamentals, System design, Cloud basics, Advanced Flask.</p>
+      <div style="margin-top: 1rem;"><i class="fas fa-microphone-alt"></i> <em>"Building solutions that blend backend robustness with user value."</em></div>
+    </div>
+  </div>
+
+  <!-- Featured Projects (4 projects) -->
+  <div class="section" style="margin-top: 3rem;">
+    <div class="section-title">✨ Featured projects</div>
+    <div class="projects-grid">
+      <!-- Leave Management System -->
+      <div class="project-card">
+        <div class="project-title">📋 Leave Management System <i class="fas fa-check-circle" style="color:#2c8f6e; font-size:0.9rem;"></i></div>
+        <div class="tech-stack"><span class="tech">Python</span><span class="tech">Flask</span><span class="tech">MySQL</span><span class="tech">SQLAlchemy</span></div>
+        <ul class="features-list">
+          <li>Employee auth & role-based approval workflow</li>
+          <li>Leave tracking & admin dashboard</li>
+          <li>Automated leave balance updates</li>
+        </ul>
+        <div><i class="fas fa-lightbulb"></i> <strong>What I learned:</strong> workflow automation, RBAC, backend architecture.</div>
+      </div>
+      <!-- Tenant Management System -->
+      <div class="project-card">
+        <div class="project-title">🏢 Tenant Management System</div>
+        <div class="tech-stack"><span class="tech">Python</span><span class="tech">Flask</span><span class="tech">MySQL</span></div>
+        <ul class="features-list">
+          <li>Tenant registration & records</li>
+          <li>Rent payment tracking & reporting</li>
+          <li>Property & lease management</li>
+        </ul>
+        <div><i class="fas fa-lightbulb"></i> DB normalization & CRUD optimization, data integrity.</div>
+      </div>
+      <!-- Academic Performance Tracking System -->
+      <div class="project-card">
+        <div class="project-title">📊 Academic Performance Tracker</div>
+        <div class="tech-stack"><span class="tech">Python</span><span class="tech">Flask</span><span class="tech">MySQL</span><span class="tech">Excel/PDF</span></div>
+        <ul class="features-list">
+          <li>Student result analytics & dashboards</li>
+          <li>Automated PDF/Excel report generation</li>
+          <li>Parent/Teacher access modules</li>
+        </ul>
+        <div><i class="fas fa-chart-simple"></i> Data processing & report automation</div>
+      </div>
+      <!-- Payroll Management System (Excel-based) -->
+      <div class="project-card">
+        <div class="project-title">💰 Payroll Management System</div>
+        <div class="tech-stack"><span class="tech">Excel Advanced</span><span class="tech">VBA logic</span></div>
+        <ul class="features-list">
+          <li>PAYE, SHIF, NSSF, Housing Levy calculations</li>
+          <li>Payslip generation & P9-ready reporting</li>
+          <li>Employer contributions & net pay</li>
+        </ul>
+        <div><i class="fas fa-calculator"></i> Business reporting & spreadsheet automation mastery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Professional Exposure + Career Goals -->
+  <div class="two-columns" style="margin-top: 1rem;">
+    <div class="col">
+      <h3><i class="fas fa-briefcase"></i> Professional exposure</h3>
+      <p><strong>Industrial Attachment · Ministry of ICT and Digital Economy, Kenya</strong><br>
+      Gained hands-on experience in network connectivity support, software installations, maintenance, Microsoft 365 productivity, and participated in software development tasks. Strengthened teamwork, communication, and ICT operations in public sector environment.</p>
+      <p><strong>Key takeaway:</strong> bridging technical support with development mindset.</p>
+    </div>
+    <div class="col">
+      <h3><i class="fas fa-chart-line"></i> Career & learning goals</h3>
+      <p><strong>Current areas:</strong> Artificial Intelligence, Machine Learning, Cloud technologies, Backend engineering, Database optimization.</p>
+      <p><strong>Career ambition:</strong> Build impactful backend systems and AI-powered tools that solve real-world challenges. I aspire to work with experienced engineers, continuously contribute to open source, and design scalable software.</p>
+      <div style="margin-top: 1rem;"><i class="fab fa-github"></i> <strong>GitHub presence:</strong> <a href="https://github.com/Robin-Kipkoech" target="_blank" style="color:#1f4e6e;">github.com/Robin-Kipkoech</a> — featuring Leave Management System, TenantMS, Academic Tracker.</div>
+    </div>
+  </div>
+
+  <!-- Portfolio highlights + Connect callout with Fiverr & LinkedIn -->
+  <hr>
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;">
+    <div>
+      <span style="font-weight: 600;">📌 Portfolio highlights: </span> 
+      Software Dev Graduate (July 2026) · Flask & MySQL expert · Business systems · 4+ core projects
+    </div>
+    <div style="display: flex; gap: 12px;">
+      <a href="https://www.fiverr.com/robin_kipkoech" target="_blank" class="btn-outline btn-fiverr" style="border-radius: 40px;"><i class="fas fa-star"></i> Fiverr</a>
+      <a href="https://www.linkedin.com/in/robin-kipkoech-631997305/" target="_blank" class="btn-outline btn-linkedin" style="border-radius: 40px;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="https://github.com/Robin-Kipkoech?tab=repositories" target="_blank" class="btn-outline" style="border-radius: 40px;"><i class="fab fa-github"></i> GitHub repos</a>
+    </div>
+  </div>
+
+  <!-- footer with all social references -->
+  <div class="footer">
+    <p><i class="far fa-comment-dots"></i> Let's connect — open for backend, AI, and freelance collaborations.</p>
+    <p style="margin-top: 0.5rem;">
+      📍 Nairobi, Kenya · 
+      <a href="mailto:kogorobin@gmail.com">kogorobin@gmail.com</a> · 
+      <a href="https://github.com/Robin-Kipkoech" target="_blank">GitHub</a> · 
+      <a href="https://www.linkedin.com/in/robin-kipkoech-631997305/" target="_blank">LinkedIn</a> · 
+      <a href="https://www.fiverr.com/robin_kipkoech" target="_blank">Fiverr</a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.75rem;">© 2026 Robin Kipkoech — Built with simplicity & purpose</p>
+  </div>
+</div>
+</body>
+</html>
